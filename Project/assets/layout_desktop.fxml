@@ -27,12 +27,12 @@
       <ProgressBar fx:id="pBtasca1" layoutX="153.0" layoutY="179.0" prefWidth="200.0" progress="0.0" />
       <Button fx:id="bTasca1" layoutX="390.0" layoutY="171.0" mnemonicParsing="false" onAction="#startTaca1" prefHeight="33.0" prefWidth="87.0" text="Iniciar" />
       <Label layoutX="153.0" layoutY="254.0" text="Tasca 2," />
-      <Label layoutX="210.0" layoutY="254.0" text="0%" />
-      <ProgressBar layoutX="153.0" layoutY="283.0" prefWidth="200.0" progress="0.0" />
-      <Button layoutX="390.0" layoutY="275.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="87.0" text="Iniciar" />
+      <Label fx:id="labelTasca2" layoutX="210.0" layoutY="254.0" text="0%" />
+      <ProgressBar fx:id="pBtasca2" layoutX="153.0" layoutY="283.0" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="bTasca2" layoutX="390.0" layoutY="275.0" mnemonicParsing="false" onAction="#startTaca2" prefHeight="33.0" prefWidth="87.0" text="Iniciar" />
       <Label layoutX="153.0" layoutY="352.0" text="Tasca 3," />
-      <Label layoutX="210.0" layoutY="352.0" text="0%" />
-      <ProgressBar layoutX="153.0" layoutY="377.0" prefWidth="200.0" progress="0.0" />
-      <Button layoutX="390.0" layoutY="369.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="87.0" text="Iniciar" />
+      <Label fx:id="labelTasca3" layoutX="210.0" layoutY="352.0" text="0%" />
+      <ProgressBar fx:id="pBtasca3" layoutX="153.0" layoutY="377.0" prefWidth="200.0" progress="0.0" />
+      <Button fx:id="bTasca3" layoutX="390.0" layoutY="369.0" mnemonicParsing="false" onAction="#startTaca3" prefHeight="33.0" prefWidth="87.0" text="Iniciar" />
    </children>
 </AnchorPane>

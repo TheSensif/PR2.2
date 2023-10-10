@@ -36,7 +36,7 @@ public class Main extends Application {
         });
 
         stage.setScene(scene);
-        stage.setTitle("JavaFX App");
+        stage.setTitle("PR2.2");
         stage.setMinWidth(minWidth);
         stage.setWidth(windowWidth);
         stage.setMinHeight(minHeight);
@@ -48,6 +48,7 @@ public class Main extends Application {
             Image icon = new Image("file:assets/icons/icon.png");
             stage.getIcons().add(icon);
         }
+        
     }
 
     private void _setLayout(int width) {

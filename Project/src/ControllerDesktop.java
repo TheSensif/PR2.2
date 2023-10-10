@@ -12,22 +12,24 @@ import javafx.scene.control.ProgressBar;
 public class ControllerDesktop {
 
     @FXML
-    Label labelTasca1;
+    Label labelTasca1,labelTasca2,labelTasca3;
 
     @FXML
-    Button bTasca1;
+    Button bTasca1,bTasca2,bTasca3;
 
     @FXML
-    ProgressBar pBtasca1;
+    ProgressBar pBtasca1,pBtasca2,pBtasca3;
 
     NumeroProgresBar obj = new NumeroProgresBar();
-    Future<List<Integer>> f0 = obj.calculaate();
     
     private volatile boolean isRunning = true; // Bandera para controlar el ciclo del hilo
+    private volatile boolean isRunning2 = true;
+    private volatile boolean isRunning3 = true;
 
     public void startTaca1() {
         switch (bTasca1.getText()) {
             case "Iniciar":
+                Future<List<Integer>> f1 = obj.calculaate();
                 Task<Void> task = new Task<Void>() {
                     @Override
                     protected Void call() {
@@ -36,7 +38,7 @@ public class ControllerDesktop {
                                 bTasca1.setText("Atura");
                             });
 
-                            List<Integer> numeros = f0.get(); // Obtiene la lista de números
+                            List<Integer> numeros = f1.get(); // Obtiene la lista de números
 
                             for (Integer numero : numeros) {
                                 if (!isRunning) {
@@ -73,5 +75,113 @@ public class ControllerDesktop {
                 isRunning = false; // Establece la bandera para detener la tarea
                 break;
         }
+    }
+
+    public void startTaca2() {
+        switch (bTasca2.getText()) {
+            case "Iniciar":
+                Future<List<Integer>> f2 = obj.calculaate(2,4);
+                Task<Void> task = new Task<Void>() {
+                    @Override
+                    protected Void call() {
+                        try {
+                            Platform.runLater(() -> {
+                                bTasca2.setText("Atura");
+                            });
+
+                            List<Integer> numeros = f2.get(); // Obtiene la lista de números
+
+                            for (Integer numero : numeros) {
+                                if (!isRunning2) {
+                                    break; // Si la bandera indica detenerse, sal del ciclo
+                                }
+                                int tiempoEspera = (int) ((Math.random() * 3 + 3) * 1000);
+                                Thread.sleep(tiempoEspera);
+                                Double numeroProgres = (double) (numero / 100.0);
+                                Platform.runLater(() -> {
+                                    labelTasca2.setText(Integer.toString(numero) + "%");
+                                    pBtasca2.setProgress(numeroProgres);
+                                });
+                            }
+
+                            Platform.runLater(() -> {
+                                if (isRunning2) {
+                                    bTasca2.setText("Iniciar");
+                                } else {
+                                    isRunning2 = true; // Restablece la bandera para futuras ejecuciones
+                                }
+                            });
+                        } catch (InterruptedException | ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                };
+
+                Thread thread = new Thread(task);
+                thread.setDaemon(true); // Establecer como daemon para que se cierre al cerrar la aplicación
+                thread.start();
+                break;
+            case "Atura":
+                bTasca2.setText("Iniciar");
+                isRunning2 = false; // Establece la bandera para detener la tarea
+                break;
+        }
+    }
+
+    public void startTaca3() {
+        switch (bTasca3.getText()) {
+            case "Iniciar":
+                Future<List<Integer>> f3 = obj.calculaate(4,6);
+                Task<Void> task = new Task<Void>() {
+                    @Override
+                    protected Void call() {
+                        try {
+                            Platform.runLater(() -> {
+                                bTasca3.setText("Atura");
+                            });
+
+                            List<Integer> numeros = f3.get(); // Obtiene la lista de números
+
+                            for (Integer numero : numeros) {
+                                if (!isRunning3) {
+                                    break; // Si la bandera indica detenerse, sal del ciclo
+                                }
+                                int tiempoEspera = (int) ((Math.random() * 6 + 3) * 1000);
+                                Thread.sleep(tiempoEspera);
+                                Double numeroProgres = (double) (numero / 100.0);
+                                Platform.runLater(() -> {
+                                    labelTasca3.setText(Integer.toString(numero) + "%");
+                                    pBtasca3.setProgress(numeroProgres);
+                                });
+                            }
+
+                            Platform.runLater(() -> {
+                                if (isRunning3) {
+                                    bTasca3.setText("Iniciar");
+                                } else {
+                                    isRunning3 = true; // Restablece la bandera para futuras ejecuciones
+                                }
+                            });
+                        } catch (InterruptedException | ExecutionException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                };
+
+                Thread thread = new Thread(task);
+                thread.setDaemon(true); // Establecer como daemon para que se cierre al cerrar la aplicación
+                thread.start();
+                break;
+            case "Atura":
+                bTasca3.setText("Iniciar");
+                isRunning3 = false; // Establece la bandera para detener la tarea
+                break;
+        }
+    }
+
+    public void stopExecutor() {
+        obj.shutdown();
     }
 }
