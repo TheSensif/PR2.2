@@ -16,7 +16,7 @@
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Button layoutX="653.0" layoutY="25.0" mnemonicParsing="false" text="Vista 1 &gt;" AnchorPane.leftAnchor="653.0" />
+            <Button layoutX="653.0" layoutY="25.0" mnemonicParsing="false" onAction="#changeView" text="Vista 1 &gt;" AnchorPane.leftAnchor="653.0" />
          </children>
          <opaqueInsets>
             <Insets bottom="100.0" />

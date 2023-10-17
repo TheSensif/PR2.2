@@ -22,7 +22,7 @@ public class ControllerDesktop {
 
     NumeroProgresBar obj = new NumeroProgresBar();
     
-    private volatile boolean isRunning = true; // Bandera para controlar el ciclo del hilo
+    private volatile boolean isRunning = true;
     private volatile boolean isRunning2 = true;
     private volatile boolean isRunning3 = true;
 
@@ -49,6 +49,7 @@ public class ControllerDesktop {
                                 Platform.runLater(() -> {
                                     labelTasca1.setText(Integer.toString(numero) + "%");
                                     pBtasca1.setProgress(numeroProgres);
+                                    pBtasca1.progressProperty();
                                 });
                             }
 
@@ -183,5 +184,9 @@ public class ControllerDesktop {
 
     public void stopExecutor() {
         obj.shutdown();
+    }
+
+    public void changeView() {
+        UtilsViews.setView("View1");
     }
 }
